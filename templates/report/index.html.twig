@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Médecins les plus consultés{% endblock %}
+
+{% block body %}
+<h1>Médecins les plus consultés</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nombre de rendez-vous</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medecin in medecins %}
+        <tr>
+            <td>{{ medecin.nom }}</td>
+            <td>{{ medecin.prenom }}</td>
+            <td>{{ medecin.howMany }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">Aucun résultat</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendez-vous par Médecin{% endblock %}
+
+{% block body %}
+<h1>Recherche par Médecin</h1>
+
+{{ form_start(form) }}
+<div class="mb-3">
+    {{ form_widget(form.medecin, {'attr': {'class': 'form-control'}}) }}
+</div>
+<button class="btn btn-primary mb-3">Rechercher</button>
+{{ form_end(form) }}
+
+{% if rendezVous is not empty %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Motif</th>
+            <th>Statut</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rdv in rendezVous %}
+        <tr>
+            <td>{{ rdv.patient.nom }} {{ rdv.patient.prenom }}</td>
+            <td>{{ rdv.date ? rdv.date|date('d/m/Y') : '' }}</td>
+            <td>{{ rdv.heure ? rdv.heure|date('H:i') : '' }}</td>
+            <td>{{ rdv.motif }}</td>
+            <td>{{ rdv.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<a href="{{ path('most_consulted_medecins') }}" class="btn btn-secondary">Retour</a>
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Clinique{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <style>
+
+        @font-face {
+    font-family: 'Milkyway';
+    src: url('/fonts/Milkyway DEMO.ttf') format('truetype');
+        }
+        body {
+            background-color: #f8f0fb;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #c9a6e4, #a6c4e4) !important;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #b392d4;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #9b72c8;
+        }
+        .btn-secondary {
+            background-color: #a6c4e4;
+            border: none;
+        }
+        table {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        h1 {
+            color: #7a5fa6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">⭐ Clinique</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_medecin_index') }}">Médecins</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_rendez_vous_index') }}">Rendez-vous</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_consultation_index') }}">Consultations</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Patients
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_patient_index') }}">Liste</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_patient_new') }}">Nouveau</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ms-auto">
+                     {% if app.user %}
+                    <a class="nav-link" href="#">Mon compte <small>({{ app.user.username | capitalize }})</small></a>
+                    {% else %}
+                     <a class="nav-link" href="{{ path('login') }}">Connexion</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                     {% if app.user %}
+                    <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+                    {% else %}
+                     <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Statistiques
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('most_consulted_medecins') }}">Médecins les plus consultés</a></li>
+                        <li><a class="dropdown-item" href="{{ path('rendez_vous_medecin') }}">Recherche par médecin</a></li>
+                    </ul>
+                </li>
+                   {% if app.user %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin') }}">⚙️ Admin</a>
+                    {% endif %}
+                </li>
+                   
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4">
+    {% block body %}{% endblock %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patients{% endblock %}
+
+{% block body %}
+<div style="padding: 40px 30px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1 style="
+            color: #7c4fa0;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0;
+        ">
+             Liste des Patients
+        </h1>
+        <a href="{{ path('app_patient_new') }}" style="
+            background: linear-gradient(135deg, #c084e8, #89a4f5);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 14px;
+        ">
+            + Nouveau patient
+        </a>
+    </div>
+
+    <div style="background: white; border-radius: 20px; box-shadow: 0 8px 30px rgba(180,160,210,0.2); overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background: linear-gradient(135deg, #c084e8, #89a4f5);">
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Id</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Nom</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Prénom</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Date naissance</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Téléphone</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Email</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: center; font-size: 14px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for patient in patients %}
+                <tr style="border-bottom: 1px solid #f0e6fa; transition: background 0.2s;"
+                    onmouseover="this.style.background='#faf5ff'"
+                    onmouseout="this.style.background='white'">
+                    <td style="padding: 16px 20px; color: #b39ddb; font-size: 14px;">{{ patient.id }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e; font-weight: 600;">{{ patient.nom }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e;">{{ patient.prenom }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e;">{{ patient.dateNaissance ? patient.dateNaissance|date('Y-m-d') : '' }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e;">{{ patient.telephone }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e;">{{ patient.email }}</td>
+                    <td style="padding: 16px 20px; text-align: center;">
+                        <a href="{{ path('app_patient_show', {'id': patient.id}) }}" style="
+                            background: #f0e6fa;
+                            color: #7c4fa0;
+                            text-decoration: none;
+                            padding: 6px 14px;
+                            border-radius: 8px;
+                            font-size: 13px;
+                            font-weight: 600;
+                            margin-right: 6px;
+                        "> Voir</a>
+                        <a href="{{ path('app_patient_edit', {'id': patient.id}) }}" style="
+                            background: linear-gradient(135deg, #c084e8, #89a4f5);
+                            color: white;
+                            text-decoration: none;
+                            padding: 6px 14px;
+                            border-radius: 8px;
+                            font-size: 13px;
+                            font-weight: 600;
+                        "> Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" style="padding: 40px; text-align: center; color: #b39ddb; font-size: 15px;">
+                         Aucun patient trouvé
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

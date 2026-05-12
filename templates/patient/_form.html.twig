@@ -1,0 +1,73 @@
+{{ form_start(form) }}
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Nom</label>
+    {{ form_widget(form.nom, {
+        'attr': {
+            'placeholder': 'Nom du patient',
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.nom) }}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Prénom</label>
+    {{ form_widget(form.prenom, {
+        'attr': {
+            'placeholder': 'Prénom du patient',
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.prenom) }}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Date de naissance</label>
+    {{ form_widget(form.dateNaissance, {
+        'attr': {
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.dateNaissance) }}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Téléphone</label>
+    {{ form_widget(form.telephone, {
+        'attr': {
+            'placeholder': 'Ex: +216 XX XXX XXX',
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.telephone) }}
+</div>
+
+<div style="margin-bottom: 25px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Email</label>
+    {{ form_widget(form.email, {
+        'attr': {
+            'placeholder': 'exemple@email.com',
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.email) }}
+</div>
+
+<button type="submit" style="
+    width: 100%;
+    background: linear-gradient(135deg, #c084e8, #89a4f5);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+"
+onmouseover="this.style.opacity='0.85'"
+onmouseout="this.style.opacity='1'">
+    {{ button_label|default('Enregistrer') }} ✨
+</button>
+
+{{ form_end(form) }}

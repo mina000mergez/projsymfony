@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultations{% endblock %}
+
+{% block body %}
+<div style="padding: 40px 30px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1 style="
+            color: #7c4fa0;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0;
+        ">
+             Liste des Consultations
+        </h1>
+        <a href="{{ path('app_consultation_new') }}" style="
+            background: linear-gradient(135deg, #c084e8, #89a4f5);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 14px;
+        ">
+            + Nouvelle consultation
+        </a>
+    </div>
+
+    <div style="background: white; border-radius: 20px; box-shadow: 0 8px 30px rgba(180,160,210,0.2); overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background: linear-gradient(135deg, #c084e8, #89a4f5);">
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Id</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Diagnostic</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Traitement</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: left; font-size: 14px;">Date</th>
+                    <th style="padding: 16px 20px; color: white; font-weight: 600; text-align: center; font-size: 14px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for consultation in consultations %}
+                <tr style="border-bottom: 1px solid #f0e6fa; transition: background 0.2s;"
+                    onmouseover="this.style.background='#faf5ff'"
+                    onmouseout="this.style.background='white'">
+                    <td style="padding: 16px 20px; color: #b39ddb; font-size: 14px;">{{ consultation.id }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e; font-weight: 600;">{{ consultation.diagnostic }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e;">{{ consultation.traitement }}</td>
+                    <td style="padding: 16px 20px; color: #6d5b8e;">{{ consultation.dateConsultation ? consultation.dateConsultation|date('Y-m-d') : '' }}</td>
+                    <td style="padding: 16px 20px; text-align: center;">
+                        <a href="{{ path('app_consultation_show', {'id': consultation.id}) }}" style="
+                            background: #f0e6fa;
+                            color: #7c4fa0;
+                            text-decoration: none;
+                            padding: 6px 14px;
+                            border-radius: 8px;
+                            font-size: 13px;
+                            font-weight: 600;
+                            margin-right: 6px;
+                        "> Voir</a>
+                        <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}" style="
+                            background: linear-gradient(135deg, #c084e8, #89a4f5);
+                            color: white;
+                            text-decoration: none;
+                            padding: 6px 14px;
+                            border-radius: 8px;
+                            font-size: 13px;
+                            font-weight: 600;
+                        "> Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" style="padding: 40px; text-align: center; color: #b39ddb; font-size: 15px;">
+                        Aucune consultation trouvée
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

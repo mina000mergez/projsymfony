@@ -1,0 +1,61 @@
+{{ form_start(form) }}
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Diagnostic</label>
+    {{ form_widget(form.diagnostic, {
+        'attr': {
+            'placeholder': 'Diagnostic de la consultation',
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.diagnostic) }}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Traitement</label>
+    {{ form_widget(form.traitement, {
+        'attr': {
+            'placeholder': 'Traitement prescrit',
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.traitement) }}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Date de consultation</label>
+    {{ form_widget(form.dateConsultation, {
+        'attr': {
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.dateConsultation) }}
+</div>
+
+<div style="margin-bottom: 25px;">
+    <label style="color: #b39ddb; font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">Rendez-vous</label>
+    {{ form_widget(form.rendezVous, {
+        'attr': {
+            'style': 'width: 100%; border-radius: 12px; border: 2px solid #e0d4f5; padding: 14px 16px; font-size: 15px; outline: none; box-sizing: border-box; color: #6d5b8e;'
+        }
+    }) }}
+    {{ form_errors(form.rendezVous) }}
+</div>
+
+<button type="submit" style="
+    width: 100%;
+    background: linear-gradient(135deg, #c084e8, #89a4f5);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+"
+onmouseover="this.style.opacity='0.85'"
+onmouseout="this.style.opacity='1'">
+    {{ button_label|default('Enregistrer') }} ✨
+</button>
+
+{{ form_end(form) }}

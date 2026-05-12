@@ -1,0 +1,13 @@
+<form method="post" action="{{ path('app_patient_delete', {'id': patient.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');" style="display: inline;">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ patient.id) }}">
+    <button style="
+        background: #f8e8e8;
+        color: #c44f4f;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    "> Supprimer</button>
+</form>
