@@ -16,10 +16,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 final class RendezVousController extends AbstractController
 {
     #[Route(name: 'app_rendez_vous_index', methods: ['GET'])]
-    public function index(RendezVousRepository $rendezVousRepository): Response
+    public function index(RendezVousRepository $rendezVousRepository, Request $request): Response
     {
+        $mois = $request->query->get('mois', date('m'));
+        $annee = $request->query->get('annee', date('Y'));
+
+        $rendezVous = $rendezVousRepository->findByMois($mois, $annee);
+
         return $this->render('rendez_vous/index.html.twig', [
-            'rendez_vouses' => $rendezVousRepository->findAll(),
+            'rendez_vous' => $rendezVous,
+            'moisActuel' => $mois,
+            'anneeActuelle' => $annee,
         ]);
     }
 

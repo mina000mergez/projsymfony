@@ -76,5 +76,18 @@ class RendezVousRepository extends ServiceEntityRepository
     return $query->getResult();
     }
 
-    
+    public function findByMois($mois, $annee): array
+{
+    $debut = new \DateTime($annee . '-' . $mois . '-01');
+    $fin = new \DateTime($annee . '-' . $mois . '-' . cal_days_in_month(CAL_GREGORIAN, $mois, $annee));
+
+    return $this->createQueryBuilder('r')
+        ->where('r.date >= :debut')
+        ->andWhere('r.date <= :fin')
+        ->setParameter('debut', $debut)
+        ->setParameter('fin', $fin)
+        ->orderBy('r.date', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
 }
